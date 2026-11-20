@@ -1,0 +1,44 @@
+# Release of the FeedTrix plugin: push a tag "v1.2.3" matching "Version" in feedtrix.php.
+# Builds feedtrix.zip (folder "feedtrix", no keys, no dev files) and attaches it to a GitHub release.
+# The FeedTrix dashboard links "Download plugin" to feedtrix.zip from the latest release.
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check version
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          header=$(sed -n 's/^ \* Version:[[:space:]]*//p' feedtrix.php)
+          constant=$(sed -n "s/^define( 'FEEDTRIX_VERSION', '\(.*\)' );/\1/p" feedtrix.php)
+          stable=$(sed -n 's/^Stable tag:[[:space:]]*//p' readme.txt)
+          echo "tag=$tag header=$header constant=$constant stable=$stable"
+          [ "$tag" = "$header" ] && [ "$tag" = "$constant" ] && [ "$tag" = "$stable" ] || { echo "::error::Tag, Version, FEEDTRIX_VERSION and Stable tag must match"; exit 1; }
+          grep -q "^= $tag =" readme.txt || { echo "::error::No changelog entry for $tag in readme.txt"; exit 1; }
+
+      - name: PHP 7.4 syntax
+        run: docker run --rm -v "$PWD:/p" -w /p php:7.4-cli sh -c 'find . -name "*.php" -not -path "./.git/*" -print0 | xargs -0 -n1 php -l > /dev/null'
+
+      - name: Build feedtrix.zip
+        run: |
+          mkdir -p build/feedtrix
+          rsync -a --exclude='.git*' --exclude='.github' --exclude='build' --exclude='feedtrix-config.php' ./ build/feedtrix/
+          (cd build && zip -qr ../feedtrix.zip feedtrix)
+          unzip -l feedtrix.zip | tail -1
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          notes=$(awk -v v="= ${GITHUB_REF_NAME#v} =" '$0==v{f=1;next} /^= /{f=0} f' readme.txt)
+          gh release create "$GITHUB_REF_NAME" feedtrix.zip --title "FeedTrix ${GITHUB_REF_NAME#v}" --notes "$notes"

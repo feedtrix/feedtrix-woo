@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" fill="none">
+  <defs>
+    <linearGradient id="blueGradIcon" x1="6.5" y1="27.5" x2="24.5" y2="9.5" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#38BDF8" />
+    </linearGradient>
+    <linearGradient id="midGradIcon" x1="6.5" y1="41.5" x2="38.5" y2="9.5" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2563EB" />
+      <stop offset="35%" stop-color="#38BDF8" />
+      <stop offset="70%" stop-color="#CBD5E1" />
+      <stop offset="100%" stop-color="#CBD5E1" />
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#0F172A" />
+  <g transform="translate(16, 15) scale(2.1)">
+    
+    <!-- 1. Top-left diagonal line + blue dot (separate, symmetric) -->
+    <circle cx="9.5" cy="12.5" r="5.2" fill="#2563EB" />
+    <line x1="24.5" y1="9.5" x2="6.5" y2="27.5" stroke="url(#blueGradIcon)" stroke-width="5.2" stroke-linecap="round" />
+    
+    <!-- 2. Long middle diagonal line (smooth fade to light silver) -->
+    <line x1="6.5" y1="41.5" x2="38.5" y2="9.5" stroke="url(#midGradIcon)" stroke-width="5.2" stroke-linecap="round" />
+    
+    <!-- 3. Bottom-right diagonal line + darker grey dot (separate, fully symmetric) -->
+    <line x1="20.5" y1="41.5" x2="38.5" y2="23.5" stroke="#CBD5E1" stroke-width="5.2" stroke-linecap="round" />
+    <circle cx="35.5" cy="38.5" r="5.2" fill="#64748B" />
+    
+  </g>
+</svg>

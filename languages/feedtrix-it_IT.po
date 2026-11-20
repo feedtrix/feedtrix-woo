@@ -1,0 +1,330 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: FeedTrix for WooCommerce\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-12T16:14:38+00:00\n"
+"PO-Revision-Date: 2026-11-12T16:14:38+00:00\n"
+"Language: it_IT\n"
+"X-Domain: feedtrix\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Description of the plugin
+#: feedtrix.php
+msgid "Optimizes your store for AI search engines (AEO): price and stock webhooks, a dynamic /llms.txt file, AI bot statistics and IndexNow."
+msgstr "Ottimizza il tuo negozio per i motori di ricerca IA (AEO): webhook per prezzi e scorte, file /llms.txt dinamico, statistiche sui bot IA e IndexNow."
+
+#: includes/class-feedtrix-settings.php:244
+#: includes/class-feedtrix-settings.php:353
+#: includes/class-feedtrix-settings.php:445
+msgid "Settings"
+msgstr "Impostazioni"
+
+#: includes/class-feedtrix-settings.php:591
+msgid "Features"
+msgstr "Funzionalità"
+
+#: includes/class-feedtrix-settings.php:601
+msgid "Advanced"
+msgstr "Avanzate"
+
+#: includes/class-feedtrix-settings.php:455
+msgid "Serve /llms.txt"
+msgstr "Servi /llms.txt"
+
+#: includes/class-feedtrix-settings.php:407
+#: includes/class-feedtrix-settings.php:460
+msgid "AI bot statistics"
+msgstr "Statistiche dei bot IA"
+
+#: includes/class-feedtrix-settings.php:602
+msgid "FeedTrix API URL"
+msgstr "URL dell'API FeedTrix"
+
+#: includes/class-feedtrix-settings.php:360
+msgid "There is an llms.txt file in the WordPress root directory. The web server will serve it instead of the FeedTrix version. Delete it to enable the dynamic file."
+msgstr "Nella directory principale di WordPress è presente un file llms.txt. Il server web lo servirà al posto della versione di FeedTrix. Eliminalo per attivare il file dinamico."
+
+#: includes/class-feedtrix-settings.php:623
+msgid "This plugin was downloaded from the FeedTrix panel and already contains your store keys."
+msgstr "Questo plugin è stato scaricato dal pannello FeedTrix e contiene già le chiavi del tuo negozio."
+
+#: includes/class-feedtrix-settings.php:430
+msgid "Your store is connected to FeedTrix"
+msgstr "Il tuo negozio è collegato a FeedTrix"
+
+#: includes/class-feedtrix-settings.php:433
+msgid "Account:"
+msgstr "Account:"
+
+#: includes/class-feedtrix-settings.php:439
+msgid "Confirm your email address using the link we sent you. Then choose a plan in the panel (7 days free)."
+msgstr "Conferma il tuo indirizzo email con il link che ti abbiamo inviato. Poi scegli un piano nel pannello (7 giorni gratis)."
+
+#: includes/class-feedtrix-settings.php:435
+msgid "File for AI bots:"
+msgstr "File per i bot IA:"
+
+#: includes/class-feedtrix-settings.php:443
+msgid "Open FeedTrix panel"
+msgstr "Apri il pannello FeedTrix"
+
+#: includes/class-feedtrix-settings.php:630
+msgid "Disconnect your store from FeedTrix?"
+msgstr "Scollegare il negozio da FeedTrix?"
+
+#: includes/class-feedtrix-settings.php:633
+msgid "Disconnect"
+msgstr "Scollega"
+
+#: includes/class-feedtrix-settings.php:637
+msgid "Connect your store to FeedTrix"
+msgstr "Collega il tuo negozio a FeedTrix"
+
+#: includes/class-feedtrix-settings.php:626
+#: includes/class-feedtrix-settings.php:646
+msgid "Store Key"
+msgstr "Store Key"
+
+#: includes/class-feedtrix-settings.php:627
+#: includes/class-feedtrix-settings.php:648
+msgid "API key"
+msgstr "Chiave API"
+
+#: includes/class-feedtrix-onboarding.php:140
+#: includes/class-feedtrix-settings.php:651
+msgid "Connect store"
+msgstr "Collega il negozio"
+
+#: includes/class-feedtrix-onboarding.php:41
+msgid "Enter the Store Key (ftx_…) and the API key from the FeedTrix panel."
+msgstr "Inserisci lo Store Key (ftx_…) e la chiave API dal pannello FeedTrix."
+
+#: includes/class-feedtrix-onboarding.php:60
+msgid "Your store has been disconnected from your FeedTrix account."
+msgstr "Il negozio è stato scollegato dal tuo account FeedTrix."
+
+#: includes/class-feedtrix-onboarding.php:79
+msgid "Unexpected response from FeedTrix."
+msgstr "Risposta inattesa da FeedTrix."
+
+#: includes/class-feedtrix-onboarding.php:100
+msgid "Your store is now connected to your FeedTrix account. We emailed you a link to the panel."
+msgstr "Il negozio è ora collegato al tuo account FeedTrix. Ti abbiamo inviato via email un link al pannello."
+
+#: includes/class-feedtrix-onboarding.php:105
+msgid "You do not have permission to do this."
+msgstr "Non hai i permessi per farlo."
+
+#: includes/class-feedtrix-onboarding.php:138
+msgid "connect your store so that ChatGPT, Perplexity and Claude can learn about your products."
+msgstr "collega il negozio affinché ChatGPT, Perplexity e Claude conoscano la tua offerta."
+
+#: includes/class-feedtrix-plugin.php:108
+msgid "FeedTrix: WooCommerce is not active. Product sync is disabled."
+msgstr "FeedTrix: WooCommerce non è attivo. La sincronizzazione dei prodotti è disattivata."
+
+#. Plugin URI of the plugin
+#: feedtrix.php
+msgid "https://feedtrix.com"
+msgstr "https://feedtrix.com"
+
+#. Plugin Name of the plugin
+#. Author of the plugin
+#: feedtrix.php
+msgid "FeedTrix"
+msgstr "FeedTrix"
+
+#: includes/class-feedtrix-settings.php:465
+msgid "Sales from AI (order attribution)"
+msgstr "Vendite dall'IA (attribuzione degli ordini)"
+
+#: includes/class-feedtrix-json-ld.php:237
+#: includes/class-feedtrix-json-ld.php:240
+msgid "Questions and answers"
+msgstr "Domande e risposte"
+
+#: includes/class-feedtrix-settings.php:470
+msgid "FeedTrix structured data (JSON-LD) on product pages"
+msgstr "Dati strutturati FeedTrix (JSON-LD) nelle pagine prodotto"
+
+#: includes/class-feedtrix-settings.php:475
+msgid "Show the questions and answers tab on product pages"
+msgstr "Mostra la scheda domande e risposte nelle pagine prodotto"
+
+#: includes/class-feedtrix-settings.php:639
+msgid "Add this store in the FeedTrix panel, then copy its keys from: Shops → your shop → Integration keys."
+msgstr "Aggiungi questo negozio nel pannello FeedTrix, poi copia le sue chiavi da: Negozi → il tuo negozio → Chiavi di integrazione."
+
+#: includes/class-feedtrix-settings.php:352
+msgid "Overview"
+msgstr "Panoramica"
+
+#: includes/class-feedtrix-settings.php:384
+msgid "Your store"
+msgstr "Il tuo negozio"
+
+#: includes/class-feedtrix-settings.php:384
+msgid "WooCommerce products, prices and stock"
+msgstr "Prodotti, prezzi e disponibilità di WooCommerce"
+
+#: includes/class-feedtrix-settings.php:385
+msgid "Writes /llms.txt, structured data and AI descriptions"
+msgstr "Genera /llms.txt, dati strutturati e descrizioni con IA"
+
+#: includes/class-feedtrix-settings.php:386
+msgid "AI assistants"
+msgstr "Assistenti IA"
+
+#: includes/class-feedtrix-settings.php:387
+msgid "New customers"
+msgstr "Nuovi clienti"
+
+#: includes/class-feedtrix-settings.php:387
+msgid "AI recommends your products and links to your store"
+msgstr "L'IA consiglia i tuoi prodotti e rimanda al tuo negozio"
+
+#: includes/class-feedtrix-settings.php:391
+msgid "Get your store recommended by ChatGPT, Perplexity and Claude"
+msgstr "Fai consigliare il tuo negozio da ChatGPT, Perplexity e Claude"
+
+#: includes/class-feedtrix-settings.php:392
+msgid "More and more customers ask AI assistants what to buy. FeedTrix prepares your catalog so that AI understands it, recommends your products and sends buyers to your store."
+msgstr "Sempre più clienti chiedono agli assistenti IA cosa comprare. FeedTrix prepara il tuo catalogo perché l'IA lo capisca, consigli i tuoi prodotti e porti acquirenti nel tuo negozio."
+
+#: includes/class-feedtrix-settings.php:406
+msgid "Visible in AI answers"
+msgstr "Visibile nelle risposte dell'IA"
+
+#: includes/class-feedtrix-settings.php:406
+msgid "/llms.txt and JSON-LD generated from your catalog, updated after every price or stock change."
+msgstr "/llms.txt e JSON-LD generati dal tuo catalogo, aggiornati a ogni cambio di prezzo o disponibilità."
+
+#: includes/class-feedtrix-settings.php:407
+msgid "See which AI bots visit your store and which pages they read."
+msgstr "Scopri quali bot IA visitano il tuo negozio e quali pagine leggono."
+
+#: includes/class-feedtrix-settings.php:408
+msgid "Sales from AI"
+msgstr "Vendite dall'IA"
+
+#: includes/class-feedtrix-settings.php:408
+msgid "Orders from customers who came from AI assistants, in one report."
+msgstr "Gli ordini dei clienti arrivati dagli assistenti IA, in un unico report."
+
+#: includes/class-feedtrix-settings.php:413
+msgid "Sign up in FeedTrix"
+msgstr "Registrati su FeedTrix"
+
+#: includes/class-feedtrix-settings.php:414
+msgid "Add your store and copy its keys"
+msgstr "Aggiungi il negozio e copia le sue chiavi"
+
+#: includes/class-feedtrix-settings.php:415
+msgid "Paste the keys in Settings"
+msgstr "Incolla le chiavi nelle Impostazioni"
+
+#: includes/class-feedtrix-settings.php:418
+msgid "Sign up"
+msgstr "Registrati"
+
+#: includes/class-feedtrix-settings.php:419
+msgid "I already have keys"
+msgstr "Ho già le chiavi"
+
+#: includes/class-feedtrix-settings.php:456
+msgid "A file for AI bots with your catalog, served from your domain."
+msgstr "Un file per i bot IA con il tuo catalogo, servito dal tuo dominio."
+
+#: includes/class-feedtrix-settings.php:461
+msgid "Counts visits of AI bots (no personal data) and sends them to FeedTrix every hour."
+msgstr "Conta le visite dei bot IA (senza dati personali) e le invia a FeedTrix ogni ora."
+
+#: includes/class-feedtrix-settings.php:466
+msgid "Marks paid orders from customers who came from AI assistants in the last 30 days."
+msgstr "Segna gli ordini pagati dei clienti arrivati dagli assistenti IA negli ultimi 30 giorni."
+
+#: includes/class-feedtrix-settings.php:471
+msgid "Adds AI descriptions, attributes and FAQ to the product data read by AI and search engines."
+msgstr "Aggiunge descrizioni IA, attributi e FAQ ai dati di prodotto letti dall'IA e dai motori di ricerca."
+
+#: includes/class-feedtrix-settings.php:476
+msgid "A visible tab with questions and answers prepared by FeedTrix."
+msgstr "Una scheda visibile con domande e risposte preparate da FeedTrix."
+
+#: includes/class-feedtrix-settings.php:621
+msgid "Store keys"
+msgstr "Chiavi del negozio"
+
+#: includes/class-feedtrix-settings.php:640
+msgid "No account yet? Sign up"
+msgstr "Non hai ancora un account? Registrati"
+
+#: includes/class-feedtrix-settings.php:491
+msgid "Working in your store"
+msgstr "Attivo nel tuo negozio"
+
+#: includes/class-feedtrix-settings.php:498
+msgid "On"
+msgstr "Attivo"
+
+#: includes/class-feedtrix-settings.php:498
+msgid "Off"
+msgstr "Disattivo"
+
+#: includes/class-feedtrix-settings.php:505
+msgid "Change in Settings"
+msgstr "Modifica nelle Impostazioni"
+
+#: includes/class-feedtrix-settings.php:532
+msgid "Your bestseller"
+msgstr "Il tuo prodotto più venduto"
+
+#: includes/class-feedtrix-settings.php:542
+msgid "What your customer sees"
+msgstr "Cosa vede il tuo cliente"
+
+#: includes/class-feedtrix-settings.php:543
+msgid "This is how an AI assistant can recommend your store once it knows your catalog."
+msgstr "Ecco come un assistente IA può consigliare il tuo negozio quando conosce il tuo catalogo."
+
+#: includes/class-feedtrix-settings.php:545
+msgid "Up-to-date prices and availability"
+msgstr "Prezzi e disponibilità aggiornati"
+
+#: includes/class-feedtrix-settings.php:546
+msgid "A direct link to the product in your store"
+msgstr "Un link diretto al prodotto nel tuo negozio"
+
+#: includes/class-feedtrix-settings.php:547
+msgid "The sale is attributed to AI in your report"
+msgstr "La vendita viene attribuita all'IA nel tuo report"
+
+#: includes/class-feedtrix-settings.php:551
+msgid "AI assistant"
+msgstr "Assistente IA"
+
+#. translators: %s: product name
+#: includes/class-feedtrix-settings.php:555
+#, php-format
+msgid "I'm looking for: %s. Where is the best place to buy it?"
+msgstr "Cerco: %s. Dove conviene comprarlo?"
+
+#. translators: 1: product name, 2: store domain
+#: includes/class-feedtrix-settings.php:561
+#, php-format
+msgid "I recommend %1$s from %2$s. It is in stock, and the product page has the full specification and current price."
+msgstr "Ti consiglio %1$s su %2$s. È disponibile e nella pagina del prodotto trovi la scheda tecnica completa e il prezzo attuale."
+
+#: includes/class-feedtrix-settings.php:573
+msgid "In stock"
+msgstr "Disponibile"
+
+#: includes/class-feedtrix-settings.php:238
+#: includes/class-feedtrix-settings.php:349
+msgid "AI search optimization (AEO) for your store"
+msgstr "Ottimizzazione del tuo negozio per i motori di ricerca IA (AEO)"
