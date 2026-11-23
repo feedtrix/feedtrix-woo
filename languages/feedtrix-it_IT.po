@@ -62,8 +62,8 @@ msgid "Account:"
 msgstr "Account:"
 
 #: includes/class-feedtrix-settings.php:439
-msgid "Confirm your email address using the link we sent you. Then choose a plan in the panel (7 days free)."
-msgstr "Conferma il tuo indirizzo email con il link che ti abbiamo inviato. Poi scegli un piano nel pannello (7 giorni gratis)."
+msgid "Confirm your email address using the link we sent you. Then choose a plan in the panel (14 days free)."
+msgstr "Conferma il tuo indirizzo email con il link che ti abbiamo inviato. Poi scegli un piano nel pannello (14 giorni gratis)."
 
 #: includes/class-feedtrix-settings.php:435
 msgid "File for AI bots:"
@@ -143,8 +143,8 @@ msgstr "FeedTrix"
 msgid "Sales from AI (order attribution)"
 msgstr "Vendite dall'IA (attribuzione degli ordini)"
 
-#: includes/class-feedtrix-json-ld.php:237
-#: includes/class-feedtrix-json-ld.php:240
+#: includes/class-feedtrix-json-ld.php:238
+#: includes/class-feedtrix-json-ld.php:241
 msgid "Questions and answers"
 msgstr "Domande e risposte"
 

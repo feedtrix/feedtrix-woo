@@ -436,7 +436,7 @@ final class FeedTrix_Settings {
 				<dd><a href="<?php echo esc_url( home_url( '/llms.txt' ) ); ?>" target="_blank" rel="noopener"><?php echo esc_html( home_url( '/llms.txt' ) ); ?></a></dd>
 			</dl>
 			<?php if ( isset( $account['verified'] ) && ! $account['verified'] ) : ?>
-				<p class="description">✉ <?php esc_html_e( 'Confirm your email address using the link we sent you. Then choose a plan in the panel (7 days free).', 'feedtrix' ); ?></p>
+				<p class="description">✉ <?php esc_html_e( 'Confirm your email address using the link we sent you. Then choose a plan in the panel (14 days free).', 'feedtrix' ); ?></p>
 			<?php endif; ?>
 			<div class="feedtrix-actions">
 				<?php if ( '' !== $this->panel_url() ) : ?>

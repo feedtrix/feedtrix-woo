@@ -8,7 +8,8 @@ defined( 'ABSPATH' ) || exit;
  * A local copy in a transient (1 day by default, set from FeedTrix) protects against API latency. FeedTrix drops it through
  * POST /wp-json/feedtrix/purge after every catalog change; the main cache
  * (Redis + Cloudflare, 24 h, invalidated on every change) runs on the FeedTrix side.
- * The last valid version is the fallback when the API is not responding.
+ * The last valid version is the fallback when the API is not responding
+ * (not when the FeedTrix subscription is inactive: HTTP 402 removes it and the plugin answers 404).
  *
  * GET {endpoint}/shops/{store_key}/llms.txt, …/llms-full.txt (table of contents), …/llms-full/{n}.txt (100 products each)
  */
@@ -161,6 +162,15 @@ final class FeedTrix_Llms_Txt {
 
 				return $body;
 			}
+		}
+		if ( 402 === $code ) {
+			// FeedTrix subscription inactive: the files are not served, the backup copy is removed
+			if ( $stale_opt ) {
+				delete_option( $stale_opt );
+			}
+			$missing = true;
+
+			return null;
 		}
 		if ( 404 === $code && $page ) {
 			$missing = true;

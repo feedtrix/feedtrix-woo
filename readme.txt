@@ -4,7 +4,7 @@ Tags: ai, seo, llms.txt, woocommerce, structured data
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ Get your store recommended by ChatGPT, Perplexity and Gemini: llms.txt, AI-ready
 
 More and more customers ask AI assistants what to buy. FeedTrix prepares your WooCommerce catalog so that AI assistants understand it, recommend your products and send buyers to your store.
 
-The plugin connects your store to the [FeedTrix](https://feedtrix.com) service, which builds the AI-ready content from your catalog. A FeedTrix account is required (7-day free trial, then a paid plan).
+The plugin connects your store to the [FeedTrix](https://feedtrix.com) service, which builds the AI-ready content from your catalog. A FeedTrix account is required (14-day free trial, then a paid plan).
 
 = What the plugin does =
 
@@ -40,7 +40,7 @@ Available in English, Polish, German, Spanish, French and Italian.
 
 = Do I need a FeedTrix account? =
 
-Yes. The plugin is the connector between your store and the FeedTrix service, which generates the content for AI assistants. You can start with a 7-day free trial.
+Yes. The plugin is the connector between your store and the FeedTrix service, which generates the content for AI assistants. You can start with a 14-day free trial.
 
 = Will it slow down my store? =
 
@@ -52,7 +52,7 @@ No. If WooCommerce, Yoast WooCommerce SEO or Rank Math already outputs a Product
 
 = What happens to /llms.txt if FeedTrix is unavailable? =
 
-The plugin serves the last valid copy of the file.
+The plugin serves the last valid copy of the file. If your FeedTrix subscription is inactive, the files are not served.
 
 = Which customer data is sent? =
 
@@ -79,7 +79,15 @@ This plugin connects to the FeedTrix API (https://api.feedtrix.com), operated by
 * **Sales from AI** (can be turned off): for paid orders of visitors who came from an AI assistant, the order number, totals, currency and the visit source (AI domain, landing page path, time of the visit). No customer data.
 * **Connection test**: the FeedTrix dashboard can call /wp-json/feedtrix/status on your store; the plugin answers only to requests signed with your API key and sends a test webhook back.
 
+FeedTrix terms of service: https://feedtrix.com/en/terms
+FeedTrix privacy policy: https://feedtrix.com/en/privacy
+
 == Changelog ==
+
+= 1.1.1 =
+* When the FeedTrix subscription is inactive, /llms.txt and /llms-full.txt are no longer served (404) and the local backup copy is removed.
+* External services: links to the FeedTrix terms of service and privacy policy.
+* The FeedTrix free trial is now 14 days.
 
 = 1.1.0 =
 * Sales from AI: orders from customers who came through the FeedTrix MCP server (utm_medium=mcp) are attributed to MCP.

@@ -96,6 +96,7 @@ final class FeedTrix_Json_Ld {
 		// Missing data is cached too (empty array), so the API is not called on every page view.
 		// A valid answer (also "no AI content yet" or 404) lives as long as set in FeedTrix (1 day by default): FeedTrix purges it when the content changes.
 		// Only an API failure gets the short time, so the plugin retries soon.
+		// HTTP 402 (FeedTrix subscription inactive) counts as a failure: no JSON-LD, retried after TTL_ERROR.
 		$answered = 200 === $code || 404 === $code;
 		set_transient( self::key( $product_id ), $data ?? array(), $answered ? $this->settings->product_cache_ttl() : self::TTL_ERROR );
 
