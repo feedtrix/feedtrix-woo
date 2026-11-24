@@ -79,8 +79,8 @@ This plugin connects to the FeedTrix API (https://api.feedtrix.com), operated by
 * **Sales from AI** (can be turned off): for paid orders of visitors who came from an AI assistant, the order number, totals, currency and the visit source (AI domain, landing page path, time of the visit). No customer data.
 * **Connection test**: the FeedTrix dashboard can call /wp-json/feedtrix/status on your store; the plugin answers only to requests signed with your API key and sends a test webhook back.
 
-FeedTrix terms of service: https://feedtrix.com/en/terms
-FeedTrix privacy policy: https://feedtrix.com/en/privacy
+FeedTrix terms of service: https://feedtrix.com/terms
+FeedTrix privacy policy: https://feedtrix.com/privacy
 
 == Changelog ==
 
