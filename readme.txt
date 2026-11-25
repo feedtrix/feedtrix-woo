@@ -4,7 +4,7 @@ Tags: ai, seo, llms.txt, woocommerce, structured data
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,6 +83,10 @@ FeedTrix terms of service: https://feedtrix.com/terms
 FeedTrix privacy policy: https://feedtrix.com/privacy
 
 == Changelog ==
+
+= 1.1.2 =
+* PHP 7.4 compatibility: no PHP 8-only string functions.
+* The connect notice is shown only on the Plugins screen and can be dismissed.
 
 = 1.1.1 =
 * When the FeedTrix subscription is inactive, /llms.txt and /llms-full.txt are no longer served (404) and the local backup copy is removed.

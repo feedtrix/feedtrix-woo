@@ -128,13 +128,13 @@ final class FeedTrix_Onboarding {
 
 	/** After activation: prompt to connect the store. */
 	public function activation_notice(): void {
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- only hides the notice on the plugin page
-		$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '';
-		if ( $this->settings->is_connected() || ! current_user_can( 'manage_options' ) || FeedTrix_Settings::PAGE === $page ) {
+		// shown only on the Plugins screen, never elsewhere in the dashboard
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+		if ( $this->settings->is_connected() || ! current_user_can( 'manage_options' ) || ! $screen || 'plugins' !== $screen->id ) {
 			return;
 		}
 		printf(
-			'<div class="notice notice-info"><p><strong>FeedTrix:</strong> %s <a class="button button-primary" style="margin-left:8px" href="%s">%s</a></p></div>',
+			'<div class="notice notice-info is-dismissible"><p><strong>FeedTrix:</strong> %s <a class="button button-primary" style="margin-left:8px" href="%s">%s</a></p></div>',
 			esc_html__( 'connect your store so that ChatGPT, Perplexity and Claude can learn about your products.', 'feedtrix' ),
 			esc_url( FeedTrix_Settings::page_url() ),
 			esc_html__( 'Connect store', 'feedtrix' )

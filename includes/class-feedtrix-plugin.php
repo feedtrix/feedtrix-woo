@@ -104,7 +104,11 @@ final class FeedTrix_Plugin {
 	}
 
 	public function notice_woocommerce_missing(): void {
-		echo '<div class="notice notice-warning"><p>'
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+		if ( ! $screen || 'plugins' !== $screen->id || ! current_user_can( 'activate_plugins' ) ) {
+			return;
+		}
+		echo '<div class="notice notice-warning is-dismissible"><p>'
 			. esc_html__( 'FeedTrix: WooCommerce is not active. Product sync is disabled.', 'feedtrix' )
 			. '</p></div>';
 	}

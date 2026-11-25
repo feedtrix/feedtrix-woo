@@ -139,7 +139,7 @@ final class FeedTrix_Llms_Txt {
 	 */
 	private function content( string $file, string $path, bool &$missing ): ?string {
 		$transient = self::TRANSIENT . self::suffix( $file );
-		$page      = str_starts_with( $file, 'full-' ) ? (int) substr( $file, 5 ) : 0;
+		$page      = 0 === strpos( $file, 'full-' ) ? (int) substr( $file, 5 ) : 0;
 		$stale_opt = $page ? null : self::STALE_OPT . self::suffix( $file );
 		$cached    = get_transient( $transient );
 		if ( is_string( $cached ) && '' !== $cached ) {

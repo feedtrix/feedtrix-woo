@@ -259,7 +259,7 @@ final class FeedTrix_Settings {
 	}
 
 	public function enqueue_assets( string $hook ): void {
-		if ( ! str_ends_with( $hook, '_page_' . self::PAGE ) ) {
+		if ( '_page_' . self::PAGE !== substr( $hook, -strlen( '_page_' . self::PAGE ) ) ) {
 			return;
 		}
 		wp_enqueue_style( 'feedtrix-admin', plugins_url( 'assets/admin.css', FEEDTRIX_FILE ), array(), FEEDTRIX_VERSION );
@@ -317,7 +317,7 @@ final class FeedTrix_Settings {
 		} else {
 			$parts = wp_parse_url( $this->endpoint() );
 			$host  = (string) ( $parts['host'] ?? '' );
-			$panel = str_starts_with( $host, 'api.' )
+			$panel = 0 === strpos( $host, 'api.' )
 				? ( $parts['scheme'] ?? 'https' ) . '://panel.' . substr( $host, 4 ) . ( isset( $parts['port'] ) ? ':' . $parts['port'] : '' )
 				: 'https://panel.feedtrix.com';
 		}

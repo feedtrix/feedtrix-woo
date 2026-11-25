@@ -29,16 +29,22 @@ jobs:
       - name: PHP 7.4 syntax
         run: docker run --rm -v "$PWD:/p" -w /p php:7.4-cli sh -c 'find . -name "*.php" -not -path "./.git/*" -print0 | xargs -0 -n1 php -l > /dev/null'
 
+      - name: No PHP 8-only functions
+        run: "! grep -rnE '\\b(str_(starts|ends)_with|str_contains|array_is_list)\\(' --include=*.php ."
+
       - name: Build feedtrix.zip
         run: |
           mkdir -p build/feedtrix
           rsync -a --exclude='.git*' --exclude='.github' --exclude='build' --exclude='feedtrix-config.php' ./ build/feedtrix/
           (cd build && zip -qr ../feedtrix.zip feedtrix)
           unzip -l feedtrix.zip | tail -1
+          # WordPress.org package: translations come from translate.wordpress.org, only the .pot stays
+          find build/feedtrix/languages -type f ! -name '*.pot' -delete
+          (cd build && zip -qr ../feedtrix-wporg.zip feedtrix)
 
       - name: Create release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           notes=$(awk -v v="= ${GITHUB_REF_NAME#v} =" '$0==v{f=1;next} /^= /{f=0} f' readme.txt)
-          gh release create "$GITHUB_REF_NAME" feedtrix.zip --title "FeedTrix ${GITHUB_REF_NAME#v}" --notes "$notes"
+          gh release create "$GITHUB_REF_NAME" feedtrix.zip feedtrix-wporg.zip --title "FeedTrix ${GITHUB_REF_NAME#v}" --notes "$notes"
