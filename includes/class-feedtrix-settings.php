@@ -135,7 +135,11 @@ final class FeedTrix_Settings {
 		$this->cache = null;
 	}
 
+	/** FeedTrix API URL: the FEEDTRIX_ENDPOINT constant (local tests), otherwise the URL saved at connection. */
 	public function endpoint(): string {
+		if ( defined( 'FEEDTRIX_ENDPOINT' ) ) {
+			return untrailingslashit( (string) FEEDTRIX_ENDPOINT );
+		}
 		return untrailingslashit( (string) $this->all()['endpoint'] );
 	}
 
@@ -276,7 +280,8 @@ final class FeedTrix_Settings {
 
 		// connection data is saved by onboarding (save_connection); the settings form does not change it
 		$values = array(
-			'endpoint'     => esc_url_raw( trim( (string) ( $input['endpoint'] ?? $saved['endpoint'] ?? self::DEFAULTS['endpoint'] ) ), array( 'https', 'http' ) ),
+			// the API URL is not editable in the dashboard (local tests: FEEDTRIX_ENDPOINT constant)
+			'endpoint'     => esc_url_raw( trim( (string) ( $saved['endpoint'] ?? self::DEFAULTS['endpoint'] ) ), array( 'https', 'http' ) ),
 			'llms_txt'     => empty( $input['llms_txt'] ) ? 0 : 1,
 			'bot_tracking' => empty( $input['bot_tracking'] ) ? 0 : 1,
 			'attribution'  => empty( $input['attribution'] ) ? 0 : 1,
@@ -597,11 +602,6 @@ final class FeedTrix_Settings {
 						</label>
 					<?php endforeach; ?>
 				</div>
-				<details class="feedtrix-advanced">
-					<summary><?php esc_html_e( 'Advanced', 'feedtrix' ); ?></summary>
-					<p><label for="ft-endpoint"><?php esc_html_e( 'FeedTrix API URL', 'feedtrix' ); ?></label><br>
-						<input type="url" id="ft-endpoint" name="<?php echo esc_attr( self::OPTION . '[endpoint]' ); ?>" value="<?php echo esc_attr( (string) $values['endpoint'] ); ?>" class="regular-text" autocomplete="off"></p>
-				</details>
 				<?php submit_button(); ?>
 			</section>
 		</form>

@@ -66,8 +66,6 @@
 .feedtrix-switch input:checked+i{background:var(--ftx-brand)}
 .feedtrix-switch input:checked+i:after{transform:translateX(18px)}
 .feedtrix-switch input:focus-visible+i{outline:2px solid var(--ftx-brand);outline-offset:2px}
-.feedtrix-advanced summary{cursor:pointer;font-weight:600;margin-top:8px}
-.feedtrix-advanced .regular-text{margin-top:8px}
 
 @media (max-width:960px){
 	.feedtrix-flow{grid-template-columns:1fr 1fr}

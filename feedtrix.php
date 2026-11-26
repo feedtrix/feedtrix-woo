@@ -3,7 +3,7 @@
  * Plugin Name:       FeedTrix
  * Plugin URI:        https://feedtrix.com
  * Description:       Optimizes your store for AI search engines (AEO): price and stock webhooks, a dynamic /llms.txt file, AI bot statistics and IndexNow.
- * Version:           1.1.2
+ * Version:           1.1.3
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FeedTrix
@@ -16,7 +16,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'FEEDTRIX_VERSION', '1.1.2' );
+define( 'FEEDTRIX_VERSION', '1.1.3' );
 define( 'FEEDTRIX_FILE', __FILE__ );
 define( 'FEEDTRIX_DIR', plugin_dir_path( __FILE__ ) );
 

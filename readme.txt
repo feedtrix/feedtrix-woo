@@ -4,7 +4,7 @@ Tags: ai, seo, llms.txt, woocommerce, structured data
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,6 +83,9 @@ FeedTrix terms of service: https://feedtrix.com/terms
 FeedTrix privacy policy: https://feedtrix.com/privacy
 
 == Changelog ==
+
+= 1.1.3 =
+* The FeedTrix API URL is no longer editable in the dashboard; local test environments set the FEEDTRIX_ENDPOINT constant in wp-config.php.
 
 = 1.1.2 =
 * PHP 7.4 compatibility: no PHP 8-only string functions.
