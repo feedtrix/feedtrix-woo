@@ -100,6 +100,16 @@ final class FeedTrix_Llms_Txt {
 
 		header( 'X-Generator: FeedTrix' );
 
+		// without a FeedTrix account: basic /llms.txt built locally from the catalog (no /llms-full.txt)
+		if ( $this->settings->llms_txt_enabled() && ! $this->settings->is_connected() && '1' === $file && class_exists( 'WooCommerce' ) ) {
+			status_header( 200 );
+			header( 'Content-Type: text/plain; charset=utf-8' );
+			header( 'Cache-Control: public, max-age=300' );
+			header( 'X-Robots-Tag: noindex' );
+			echo FeedTrix_Llms_Local::content(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- plain text
+			exit;
+		}
+
 		if ( ! $this->settings->llms_txt_enabled() || ! $this->settings->is_connected() ) {
 			status_header( 404 );
 			nocache_headers();
@@ -150,6 +160,7 @@ final class FeedTrix_Llms_Txt {
 		$code     = is_wp_error( $response ) ? 0 : (int) wp_remote_retrieve_response_code( $response );
 
 		if ( 200 === $code ) {
+			FeedTrix_Bot_Tracker::set_subscription_inactive( false );
 			$body = (string) wp_remote_retrieve_body( $response );
 			if ( '' !== $body ) {
 				set_transient( $transient, $body, $this->settings->llms_cache_ttl() );
@@ -164,6 +175,7 @@ final class FeedTrix_Llms_Txt {
 			}
 		}
 		if ( 402 === $code ) {
+			FeedTrix_Bot_Tracker::set_subscription_inactive( true );
 			// FeedTrix subscription inactive: the files are not served, the backup copy is removed
 			if ( $stale_opt ) {
 				delete_option( $stale_opt );

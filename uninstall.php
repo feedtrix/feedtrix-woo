@@ -18,4 +18,9 @@ for ( $feedtrix_page = 1, $feedtrix_pages = (int) get_option( 'feedtrix_llms_ful
 }
 delete_option( 'feedtrix_llms_full_pages' );
 delete_option( 'feedtrix_jsonld_generation' );
+delete_option( 'feedtrix_audit' );
+delete_option( 'feedtrix_review' );
+delete_option( 'feedtrix_bot_stats' );
+delete_transient( 'feedtrix_subscription_inactive' );
+delete_transient( 'feedtrix_llms_local' );
 wp_clear_scheduled_hook( 'feedtrix_send_bot_hits' );

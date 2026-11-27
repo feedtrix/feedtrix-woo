@@ -41,6 +41,10 @@ final class FeedTrix_Plugin {
 		( new FeedTrix_Status( $this->settings, $client ) )->register();
 		( new FeedTrix_Purge( $this->settings ) )->register();
 		( new FeedTrix_IndexNow( $this->settings ) )->register();
+		( new FeedTrix_Audit( $this->settings ) )->register();
+		( new FeedTrix_Review() )->register();
+		( new FeedTrix_Bot_Stats( $this->settings ) )->register();
+		( new FeedTrix_Site_Health( $this->settings ) )->register();
 
 		// a new plugin version may add rewrite rules (e.g. /{key}.txt): flush them once after an update
 		add_action( 'init', array( $this, 'maybe_upgrade' ), 99 );
@@ -49,6 +53,8 @@ final class FeedTrix_Plugin {
 			( new FeedTrix_Webhooks( $this->settings, $client ) )->register();
 			( new FeedTrix_Attribution( $this->settings, $client ) )->register();
 			( new FeedTrix_Json_Ld( $this->settings, $client ) )->register();
+			( new FeedTrix_WebMcp( $this->settings ) )->register(); // works without a FeedTrix account
+			FeedTrix_Llms_Local::register();
 		} else {
 			add_action( 'admin_notices', array( $this, 'notice_woocommerce_missing' ) );
 		}
@@ -92,6 +98,7 @@ final class FeedTrix_Plugin {
 		FeedTrix_Llms_Txt::add_rewrite_rule();
 		FeedTrix_IndexNow::add_rewrite_rule();
 		flush_rewrite_rules();
+		FeedTrix_Review::install();
 
 		if ( ! wp_next_scheduled( self::CRON_BOT_HITS ) ) {
 			wp_schedule_event( time() + HOUR_IN_SECONDS, 'hourly', self::CRON_BOT_HITS );

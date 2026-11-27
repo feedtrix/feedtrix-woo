@@ -20,6 +20,7 @@ final class FeedTrix_Bot_Tracker {
 	private const LOCK          = 'feedtrix_bot_hits_lock';
 	private const MAX_KEYS      = 5000;
 	private const SEND_EVERY    = 60;
+	private const INACTIVE      = 'feedtrix_subscription_inactive';
 
 	/** @var FeedTrix_Settings */
 	private $settings;
@@ -37,8 +38,22 @@ final class FeedTrix_Bot_Tracker {
 	public function register(): void {
 		add_action( FeedTrix_Plugin::CRON_BOT_HITS, array( $this, 'send' ) );
 
-		if ( $this->settings->bot_tracking_enabled() ) {
+		// AI bot statistics are a feature of connected stores with an active FeedTrix subscription
+		if ( $this->settings->bot_tracking_enabled() && $this->settings->is_connected() && ! self::subscription_inactive() ) {
 			add_action( 'template_redirect', array( $this, 'track' ), -1 );
+		}
+	}
+
+	/** FeedTrix answered that the subscription is inactive: stop counting for a day, then ask again. */
+	public static function subscription_inactive(): bool {
+		return (bool) get_transient( self::INACTIVE );
+	}
+
+	public static function set_subscription_inactive( bool $inactive ): void {
+		if ( $inactive ) {
+			set_transient( self::INACTIVE, 1, DAY_IN_SECONDS );
+		} else {
+			delete_transient( self::INACTIVE );
 		}
 	}
 
@@ -47,6 +62,8 @@ final class FeedTrix_Bot_Tracker {
 		if ( null === $bot ) {
 			return;
 		}
+
+		FeedTrix_Bot_Stats::record( $bot );
 
 		[ $target, $product_id ] = $this->target();
 
@@ -132,6 +149,16 @@ final class FeedTrix_Bot_Tracker {
 
 		$code = is_wp_error( $response ) ? 0 : (int) wp_remote_retrieve_response_code( $response );
 		if ( $code >= 200 && $code < 300 ) {
+			$answer = json_decode( (string) wp_remote_retrieve_body( $response ), true );
+			if ( is_array( $answer ) && 'inactive' === ( $answer['subscription'] ?? '' ) ) {
+				// visits are not stored without an active subscription: drop the queue and stop counting
+				self::set_subscription_inactive( true );
+				delete_option( self::OPTION );
+				delete_option( FeedTrix_Bot_Stats::OPTION );
+				delete_transient( self::LOCK );
+
+				return;
+			}
 			// subtract only the sent counts; hits recorded while sending are kept
 			$current = get_option( self::OPTION, array() );
 			$current = is_array( $current ) ? $current : array();

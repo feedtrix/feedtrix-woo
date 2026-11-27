@@ -126,11 +126,22 @@ final class FeedTrix_Onboarding {
 		return is_array( $notice ) ? $notice : null;
 	}
 
-	/** After activation: prompt to connect the store. */
+	/** After activation: one click runs the free audit (nothing is sent before the click), then prompt to connect the store. */
 	public function activation_notice(): void {
 		// shown only on the Plugins screen, never elsewhere in the dashboard
 		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
 		if ( $this->settings->is_connected() || ! current_user_can( 'manage_options' ) || ! $screen || 'plugins' !== $screen->id ) {
+			return;
+		}
+		if ( ! get_option( FeedTrix_Audit::OPTION ) ) {
+			printf(
+				'<div class="notice notice-info is-dismissible"><form method="post" action="%s" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:.5em 0"><input type="hidden" name="action" value="%s">%s<span><strong>FeedTrix:</strong> %s</span><button type="submit" class="button button-primary">%s</button></form></div>',
+				esc_url( admin_url( 'admin-post.php' ) ),
+				esc_attr( FeedTrix_Audit::ACTION ),
+				wp_nonce_field( FeedTrix_Audit::ACTION, '_wpnonce', true, false ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- core nonce field markup
+				esc_html__( 'check in 30 seconds how ChatGPT, Perplexity and Claude see your store. Free, no account needed.', 'feedtrix' ),
+				esc_html__( 'Run the free AI audit', 'feedtrix' )
+			);
 			return;
 		}
 		printf(

@@ -109,3 +109,28 @@
 .feedtrix-product em{font-style:normal;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:#e7f7ec;color:#007a1f}
 @media (max-width:960px){.feedtrix-preview{grid-template-columns:1fr}}
 @media (max-width:600px){.feedtrix-tiles{grid-template-columns:1fr}.feedtrix-bubble{max-width:100%}}
+.feedtrix-audit-head{display:flex;gap:20px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.feedtrix-audit-head > div{flex:1;min-width:260px}
+.feedtrix-audit-body{display:flex;gap:28px;align-items:center;flex-wrap:wrap;margin:12px 0}
+.feedtrix-score{--p:calc(var(--ftx-score) * 1%);width:120px;height:120px;border-radius:50%;display:grid;place-content:center;text-align:center;background:radial-gradient(closest-side,#fff 78%,transparent 79%),conic-gradient(var(--ftx-score-color) var(--p),#e2e8f0 0)}
+.feedtrix-score strong{font-size:34px;line-height:1}
+.feedtrix-score span{color:#64748b;font-size:12px}
+.feedtrix-audit-checks{flex:1;min-width:260px;display:grid;gap:10px}
+.feedtrix-bar{display:grid;grid-template-columns:1fr auto;gap:4px 12px;font-size:13px}
+.feedtrix-bar i{grid-column:1/-1;height:6px;border-radius:6px;background:#f1f5f9;overflow:hidden}
+.feedtrix-bar em{display:block;height:100%;border-radius:6px}
+.feedtrix-bar.is-flag{border-top:1px solid var(--ftx-line);padding-top:8px}
+.feedtrix-todo{margin:8px 0 16px;padding:0;list-style:none;max-width:680px}
+.feedtrix-todo li{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--ftx-line)}
+.feedtrix-todo b{color:#16a34a;white-space:nowrap}
+
+.feedtrix-review { border-left-color: #f59e0b; }
+.feedtrix-review .button-link { margin-left: 8px; vertical-align: middle; }
+
+/* Dashboard widget: AI bots */
+.feedtrix-widget-total strong { font-size: 28px; line-height: 1; margin-right: 6px; }
+.feedtrix-widget-bots { margin: 12px 0; }
+.feedtrix-widget-bots li { display: grid; grid-template-columns: 9rem 1fr 3rem; gap: 8px; align-items: center; margin: 6px 0; }
+.feedtrix-widget-bots i { display: block; height: 8px; background: #eef2ff; border-radius: 4px; overflow: hidden; }
+.feedtrix-widget-bots em { display: block; height: 100%; background: #4f46e5; border-radius: 4px; }
+.feedtrix-widget-bots b { text-align: right; }

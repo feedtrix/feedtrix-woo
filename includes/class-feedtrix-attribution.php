@@ -20,7 +20,7 @@ final class FeedTrix_Attribution {
 	private const WINDOW = 30 * DAY_IN_SECONDS;
 
 	private const DOMAINS = array( 'chatgpt.com', 'openai.com', 'perplexity.ai', 'claude.ai', 'gemini.google.com', 'copilot.microsoft.com' );
-	private const MEDIA   = array( 'llms_txt', 'llms_full', 'json_ld', 'mcp', 'organic_ai_referral' );
+	private const MEDIA   = array( 'llms_txt', 'llms_full', 'json_ld', 'mcp', 'webmcp', 'organic_ai_referral' );
 
 	/** @var int[] orders to report after the response is sent to the client */
 	private array $queue = array();
@@ -53,14 +53,14 @@ final class FeedTrix_Attribution {
 	}
 
 	/** Whether the cookie may be set: store filter and, with a consent plugin (WP Consent API), statistics consent. */
-	private function allowed(): bool {
+	public static function allowed(): bool {
 		$allowed = ! function_exists( 'wp_has_consent' ) || wp_has_consent( 'statistics' );
 
 		return (bool) apply_filters( 'feedtrix_attribution_allowed', $allowed );
 	}
 
 	public function print_script(): void {
-		if ( is_admin() || ! $this->allowed() ) {
+		if ( is_admin() || ! self::allowed() ) {
 			return;
 		}
 		$domains = wp_json_encode( self::DOMAINS );

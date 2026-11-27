@@ -18,12 +18,13 @@ final class FeedTrix_Settings {
 		'attribution'   => 1,
 		'json_ld'       => 1,
 		'faq_tab'       => 0,
+		'webmcp'        => 1,
 		'product_cache_ttl' => DAY_IN_SECONDS, // set from FeedTrix (POST /wp-json/feedtrix/settings)
 		'llms_cache_ttl'    => DAY_IN_SECONDS,
 	);
 
 	/** Feature switches that can also be changed from the FeedTrix dashboard. */
-	public const TOGGLES = array( 'llms_txt', 'bot_tracking', 'attribution', 'json_ld', 'faq_tab' );
+	public const TOGGLES = array( 'llms_txt', 'bot_tracking', 'attribution', 'json_ld', 'faq_tab', 'webmcp' );
 
 	private const TTL_MIN = 5 * MINUTE_IN_SECONDS;
 	private const TTL_MAX = 30 * DAY_IN_SECONDS;
@@ -181,6 +182,10 @@ final class FeedTrix_Settings {
 		return (bool) $this->all()['faq_tab'];
 	}
 
+	public function webmcp_enabled(): bool {
+		return (bool) $this->all()['webmcp'];
+	}
+
 	public function product_cache_ttl(): int {
 		return self::clamp_ttl( $this->all()['product_cache_ttl'] ?? DAY_IN_SECONDS );
 	}
@@ -263,7 +268,8 @@ final class FeedTrix_Settings {
 	}
 
 	public function enqueue_assets( string $hook ): void {
-		if ( '_page_' . self::PAGE !== substr( $hook, -strlen( '_page_' . self::PAGE ) ) ) {
+		// FeedTrix screen and the WordPress dashboard (AI bots widget)
+		if ( 'index.php' !== $hook && '_page_' . self::PAGE !== substr( $hook, -strlen( '_page_' . self::PAGE ) ) ) {
 			return;
 		}
 		wp_enqueue_style( 'feedtrix-admin', plugins_url( 'assets/admin.css', FEEDTRIX_FILE ), array(), FEEDTRIX_VERSION );
@@ -287,6 +293,7 @@ final class FeedTrix_Settings {
 			'attribution'  => empty( $input['attribution'] ) ? 0 : 1,
 			'json_ld'      => empty( $input['json_ld'] ) ? 0 : 1,
 			'faq_tab'      => empty( $input['faq_tab'] ) ? 0 : 1,
+			'webmcp'       => empty( $input['webmcp'] ) ? 0 : 1,
 		);
 		// cache times are set from FeedTrix only; the settings form keeps them
 		foreach ( array( 'product_cache_ttl', 'llms_cache_ttl' ) as $key ) {
@@ -353,6 +360,7 @@ final class FeedTrix_Settings {
 				<img src="<?php echo esc_url( plugins_url( 'assets/icon.svg', FEEDTRIX_FILE ) ); ?>" alt="" width="36" height="36">
 				<span>FeedTrix <span class="feedtrix-tagline"><?php esc_html_e( 'AI search optimization (AEO) for your store', 'feedtrix' ); ?></span></span>
 			</h1>
+			<?php FeedTrix_Review::render(); ?>
 			<nav class="nav-tab-wrapper">
 				<a href="<?php echo esc_url( self::page_tab_url( 'overview' ) ); ?>" class="nav-tab <?php echo 'overview' === $tab ? 'nav-tab-active' : ''; ?>"><?php esc_html_e( 'Overview', 'feedtrix' ); ?></a>
 				<a href="<?php echo esc_url( self::page_tab_url( 'settings' ) ); ?>" class="nav-tab <?php echo 'settings' === $tab ? 'nav-tab-active' : ''; ?>"><?php esc_html_e( 'Settings', 'feedtrix' ); ?></a>
@@ -371,9 +379,11 @@ final class FeedTrix_Settings {
 				$this->render_settings( is_array( $notice ) ? $notice : array() );
 			} elseif ( $this->is_connected() ) {
 				$this->render_connected();
+				FeedTrix_Audit::render( $this );
 				$this->render_features_status();
 				$this->render_chat_preview();
 			} else {
+				FeedTrix_Audit::render( $this );
 				$this->render_intro();
 				$this->render_chat_preview();
 			}
@@ -480,6 +490,11 @@ final class FeedTrix_Settings {
 				'title'       => __( 'Show the questions and answers tab on product pages', 'feedtrix' ),
 				'description' => __( 'A visible tab with questions and answers prepared by FeedTrix.', 'feedtrix' ),
 				'icon'        => '<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.4M12 17h.01"/>',
+			),
+			'webmcp'       => array(
+				'title'       => __( 'Tools for AI agents in the browser (WebMCP)', 'feedtrix' ),
+				'description' => __( 'AI agents in the browser can search products, check shipping and add to the cart through store tools instead of clicking. The customer always confirms payment.', 'feedtrix' ),
+				'icon'        => '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/>',
 			),
 		);
 	}
